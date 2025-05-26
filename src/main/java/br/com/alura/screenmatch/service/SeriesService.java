@@ -24,15 +24,6 @@ public class SeriesService {
 
     public List<SerieDTO> getReleasesSeries() { return convertData(serieRepository.getReleasesSeries()); }
 
-    private List<SerieDTO> convertData(List<Serie> series) {
-        return series
-                .stream()
-                .map(s -> new SerieDTO(s.getId(), s.getTitle(), s.getTotalSeasons(), s.getAvaliation(),
-                        s.getGenre(), s.getDirector(), s.getActors(), s.getPlot(), s.getLanguage(), s.getAwards(),
-                        s.getPoster()))
-                .collect(Collectors.toList());
-    }
-
     public SerieDTO getSerieFromId(Long id) {
         Optional<Serie> serie = serieRepository.findById(id);
 
@@ -55,5 +46,21 @@ public class SeriesService {
                     .collect(Collectors.toList());
         }
         return null;
+    }
+
+    private List<SerieDTO> convertData(List<Serie> series) {
+        return series
+                .stream()
+                .map(s -> new SerieDTO(s.getId(), s.getTitle(), s.getTotalSeasons(), s.getAvaliation(),
+                        s.getGenre(), s.getDirector(), s.getActors(), s.getPlot(), s.getLanguage(), s.getAwards(),
+                        s.getPoster()))
+                .collect(Collectors.toList());
+    }
+
+    public List<EpisodeDTO> getSeasonFromNumber(Long id, Integer seasonNumber) {
+        return serieRepository.getEpisodesFromSeason(id, seasonNumber)
+                .stream()
+                .map(e -> new EpisodeDTO(e.getSeason(), e.getTitle(), e.getNumberEp()))
+                .collect(Collectors.toList());
     }
 }

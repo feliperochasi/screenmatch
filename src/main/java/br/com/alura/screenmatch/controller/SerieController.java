@@ -41,4 +41,9 @@ public class SerieController {
     public List<EpisodeDTO> getAllSeasons(@PathVariable Long id) {
         return seriesService.getAllSeasons(id);
     }
+
+    @GetMapping("/{id}/temporadas/{seasonNumber}")
+    public List<EpisodeDTO> getSeaonFromNumber(@PathVariable Long id, @PathVariable Integer seasonNumber) {
+        return seriesService.getSeasonFromNumber(id, seasonNumber);
+    }
 }
