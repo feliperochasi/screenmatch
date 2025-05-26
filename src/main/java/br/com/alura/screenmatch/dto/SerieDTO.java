@@ -5,7 +5,7 @@ import br.com.alura.screenmatch.model.Category;
 public record SerieDTO(Long id,
                        String title,
                        Integer totalSeasons,
-                       Double avalation,
+                       Double avaliation,
                        Category genre,
                        String director,
                        String actors,
