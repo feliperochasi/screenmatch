@@ -20,7 +20,7 @@ public class SeriesService {
         return convertData(serieRepository.findTop5ByOrderByAvaliationDesc());
     }
 
-    public List<SerieDTO> getReleasesSeries() { return convertData(serieRepository.findTop5ByOrderByEpisodesReleasedDateDesc()); }
+    public List<SerieDTO> getReleasesSeries() { return convertData(serieRepository.getReleasesSeries()); }
 
     private List<SerieDTO> convertData(List<Serie> series) {
         return series
