@@ -1,26 +1,20 @@
 package br.com.alura.screenmatch.controller;
 
 import br.com.alura.screenmatch.dto.SerieDTO;
-import br.com.alura.screenmatch.repository.SerieRepository;
+import br.com.alura.screenmatch.service.SeriesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 public class SerieController {
     @Autowired
-    private SerieRepository repository;
+    private SeriesService seriesService;
     @GetMapping("/series")
     public List<SerieDTO> getSeries() {
-        return repository.findAll()
-                .stream()
-                .map(s -> new SerieDTO(s.getId(), s.getTitle(), s.getTotalSeasons(), s.getAvaliation(),
-                        s.getGenre(), s.getDirector(), s.getActors(), s.getPlot(), s.getLanguage(), s.getAwards(),
-                        s.getPoster()))
-                .collect(Collectors.toList());
+        return seriesService.getAllSeries();
     }
 
 }
