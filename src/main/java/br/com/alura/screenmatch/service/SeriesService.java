@@ -14,13 +14,13 @@ public class SeriesService {
     @Autowired
     private SerieRepository serieRepository;
 
-    public List<SerieDTO> getAllSeries() {
-        return convertData(serieRepository.findAll());
-    }
+    public List<SerieDTO> getAllSeries() { return convertData(serieRepository.findAll()); }
 
     public List<SerieDTO> getTop5Series() {
-        return  convertData(serieRepository.findTop5ByOrderByAvaliationDesc());
+        return convertData(serieRepository.findTop5ByOrderByAvaliationDesc());
     }
+
+    public List<SerieDTO> getReleasesSeries() { return convertData(serieRepository.findTop5ByOrderByEpisodesReleasedDateDesc()); }
 
     private List<SerieDTO> convertData(List<Serie> series) {
         return series
